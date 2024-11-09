@@ -1,0 +1,49 @@
+Pour un mémoire structuré et bien équilibré sur l’Écart Bilan Technique (EBT), voici un plan en trois grandes parties, avec un ordre logique qui te permet de gérer les différentes phases du projet en 4 mois. J’ai intégré des sous-parties pour chaque section afin de couvrir les principaux aspects techniques, fonctionnels et organisationnels.
+
+Plan du Mémoire
+
+	1.	Introduction
+	•	Contexte et présentation de GRTgaz : Introduction à l’entreprise et à ton rôle dans la gestion de l’énergie.
+	•	Problématique de l’Écart Bilan Technique : Importance de l’EBT pour l’entreprise, pour la CRE et pour le métier.
+	•	Objectifs du projet : Résumé des objectifs techniques et métiers, en lien avec l’amélioration de la gestion et de la transparence des données EBT.
+	•	Méthodologie et organisation du mémoire : Brève explication de l’approche adoptée (Six Sigma, analyse statistique, industrialisation, etc.).
+	2.	Analyse et Conception du Projet
+	•	Analyse des Besoins Fonctionnels et Techniques : Recueil des besoins auprès des parties prenantes (CRE, métiers, DSI), définition des spécifications pour la gestion de l’EBT.
+	•	Cartographie des Données et Référentiels : Analyse des sources de données (data warehouse vs cubes), des référentiels utilisés, et de leur état de cohérence.
+	•	Étude des Problématiques Techniques Existantes : Identification des causes des pannes actuelles, analyse des limitations des outils en place, et justification de la refonte des processus de contrôle de l’EBT.
+	•	Proposition de Solution : Présentation des solutions envisagées (refonte des processus, création d’outils de reporting, intégration des nouvelles données).
+	3.	Développement et Mise en Œuvre des Outils
+	•	Phase de Conception et Prototype : Développement de prototypes pour le reporting, les outils de calcul, et le contrôle de cohérence des données.
+	•	Développement des Outils EBT : Développement en détail des outils choisis (calculation tools, reporting), incluant les technologies et architectures utilisées.
+	•	Automatisation et Industrialisation des Processus : Intégration avec la DSI pour la mise en place des solutions dans les systèmes existants (pipeline d’automatisation, etc.).
+	•	Implémentation des Méthodes de Contrôle et Validation : Outils de vérification de données, contrôles de cohérence pour s’assurer de la fiabilité des données.
+	4.	Gestion de Connaissances et Documentation
+	•	Refonte Documentaire et Knowledge Management : Organisation de la documentation pour assurer la transmission des connaissances.
+	•	Formation et Support aux Utilisateurs : Mise en place de formations ou d’un support pour les utilisateurs finaux.
+	•	Stratégie d’Amélioration Continue : Proposition d’un cadre pour maintenir et améliorer les outils en continu.
+	5.	Conclusion et Perspectives
+	•	Résultats et Impact du Projet : Bilan des bénéfices pour GRTgaz et pour la CRE, impact sur la réduction de l’EBT et le contrôle des coûts.
+	•	Limitations et Leçons Apprises : Points d’amélioration identifiés durant le projet, retour d’expérience.
+	•	Perspectives d’Évolution : Suggestions pour des améliorations futures (nouvelles fonctionnalités, nouvelles analyses).
+
+Ordre et Planning des Missions sur 4 Mois
+
+	1.	Mois 1 : Analyse et Conception
+	•	Collecte des besoins auprès des parties prenantes.
+	•	Analyse des données et référentiels existants.
+	•	Définition des spécifications fonctionnelles et techniques.
+	•	Élaboration d’une première cartographie des processus et des flux de données.
+	2.	Mois 2 : Développement des Prototypes et Tests
+	•	Développement de prototypes pour le reporting et les outils de contrôle.
+	•	Tests fonctionnels pour ajuster les spécifications si nécessaire.
+	•	Préparation des bases pour l’intégration industrielle avec la DSI.
+	3.	Mois 3 : Industrialisation et Automatisation
+	•	Mise en place des outils de contrôle dans l’environnement existant.
+	•	Automatisation des processus de collecte et d’analyse des données.
+	•	Collaboration avec la DSI pour l’intégration finale et le déploiement.
+	4.	Mois 4 : Documentation et Formation
+	•	Documentation des outils et des processus (user-friendly).
+	•	Formation des utilisateurs finaux et support initial.
+	•	Finalisation du mémoire (résultats, bilan et perspectives).
+
+Ce plan te permettra d’aborder toutes les étapes du cycle de vie d’un projet informatique, tout en mettant l’accent sur les aspects techniques et métiers liés à l’EBT, en adéquation avec ta formation.
