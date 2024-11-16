@@ -27,6 +27,14 @@
     }
   }
 
+  show heading: it => {
+    if it.level == 1 {
+      pad(bottom: 0.5em,top:0em,left:0em,it)
+    } else {
+      pad(bottom: 0.5em,top:0em,left: 1em * it.level,it)
+    }
+  }
+
 
   // Logo
   grid(
