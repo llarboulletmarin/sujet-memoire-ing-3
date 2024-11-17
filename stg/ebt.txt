@@ -1,0 +1,349 @@
+# EBT
+
+## L’EBT, enjeux et définition
+
+l’Ecart Bilan Technique, mesure la différence entre les quantités de gaz entrantes et sortantes du territoire. Le gaz naturel entrant sur le territoire de GRTgaz provient de divers points tels que les opérateurs adjacents (point frontières), stcokages, terminaux méthaniers, producteurs de biométhane et rebours, désignés comme les « quantités entrantes ». A l’inverse, le gaz sortant du territoire, désigné comme les « quantités sortantes », est principalement destiné aux livraisons a nos clients industriels, opérateurs adjacents, stockages, gaz carburant, mise à l'évent et du vraiation du stock en conduite.
+
+=> « EBT réalisé » = Gaz non comptabilisé : EBT = Somme qt entrantes - somme qt sortantes
+
+L'EBT est consdiéer comme un OPEX : Operating Expense (dépenses d'exploitation)
+
+L’objectif est de s’assurer que les quantités entrantes sont égales aux quantités sortantes. Si ce n’est
+pas le cas, cela indique un déséquilibre quelque part sur le réseau.
+
+Toutes entrées/sorties sont comptées ou estimées, y compris les variations du stock en conduite et du gaz mis à l'event.
+
+Causes accidentelles :  
+- Erreurs de mesure
+- Bipasses accidentelles
+- Erreur de sasaies manuelles/relèves
+- Erreur de référentiel
+- Dysfonctionnement de matériel
+- Problème de transmission de données
+- Panne des Systèmes d'Information 
+- Perturbation du calcul du PCS par les travaux
+=> Supprimer ces causes via un suivi rigoureux = « EBT inexpliqué »
+
+Causes structurelles :
+- Le sous-comptage des points de livraison (compteurs turbine)
+- Le sous-comptage des rampes à diaphragme (compteurs diaphragme), Ober, Chémery etc..
+- L'impact des relèves mensuelles : erreur sur l'estimation des derniers jours du mois
+- Les fuites internes
+- L'impact PCS : liés à l'écart de mesure entre les chromato des ressources et ceux utilisés pour les mplois
+
+=> EBT modélisé = « EBT expliqué »
+
+Mailles d'analyse : 
+- National
+- Terrioire dont 4 en gaz H et 1 en gaz B 
+- Sous-réseaux env. 70
+Avec pour chaque maille => L’EBT réalisé , Le modèle et ses composants et l'EBT inexpliqué
+
+La validation des données : la validation unitaire des données via ETR et SIMONE (deux progiciel, l'un pour verification des donnnes de comptage l'uatre pour la calcul du PCS) est indispensable et constitue un préalable => données de production
+Le croisement des donnnées entre elles et leur cohérence par raport à leur historique permet :
+- detecter rapdement des dnnées abberantes
+- oreinter l'enquete et l'analyse
+- idnetifier le(s) suspect(s)
+
+## Modélisation de l'EBT : « EBT expliqué »
+
+Les causes structurelles identifiés et quantifiées de l'EBT:
+- Sous-comptage des rampes à diaphragme
+- Changement du chromatographe de GASSCO qui ne mesure plus les C6+ (=>PCS sous-estimé)
+- Sous-comptage des postes de livraison
+- fuites internes ver les réseaux aval, évaluées à environ 200 GWh/an (GRTgaz/GRDF, lié aux regulateurs, pilotes, et by-pass)
+- Impact de la Température du stock en conduite
+
+Le sous comptage des postes de livraion 
+Modèle permettant la determination des valeurs 
+ordre de granduer : entre 600 et 700 GWh/an
+Principal du calcul : pour chaque PCE ayant un calibre Turbine, et pour chaque heure
+Calvul du coefficient C pui du Volume Brut 
+Calcul du %Qmax = Volume brut/ Volume brut max
+En fonction de la plage su lqauelle se trouve le %Qmax application de la formule déterminee par les courbes du modele 
+Interpolation ou extrapolation des courbes en fonction de la pression
+Nb:
+Nous ne calculons pas de sous-comptage pour un piston (sous-comptage faible voir inexistant) -> Importance de l’attribut Calibre dans ETR (G_ = Turbine; P_ = Piston)
+Débit de démarrage: 0,7%Qmax en instantanée et 0,4%Qmax en moyenne horaire. En dessous le compteur ne compte plus (non modélisé)
+Le sous-comptage est estimé dans l’EBT il ne doit pas être estimé dans ETR (donc non facturé au client)
+Le sous-comptage d’un PCE C est la somme des sous-comptages des fils affectés de leur coefficient
+
+Impact de la Température du stcok en conduite
+Simon prend une température du gaz fixe à 1à degres dans sa modelisation. la temperature du gaz peut etre en dessousou aaus dessus seln la préeriode
+cela produire des transfret d'BEt  mais sur dun eannée completre l'impact doit s'annluer
+
+Interfaces majeurs influence
+le quivi des interfaces majeurs et primordial pour maitriser l'EBT
+Un biais de comptage meme inferieur aerreurs maximales tolerres peut modifier la tendance de l'ebt
+de meme un changement sur les fluex d'une année sur l'autre peut chnager sa tendnace
+
+## EBT Inexpliqué 
+
+Impact PCS = Impact de l'écart de PCS entre les entrées et les sorties sur l'EBT (KWh)
+Impact volume inexpliqué = EBT réalis - Modelisation EBT - Impact PCS
+Les causes accidentelles de l’EBT : maîtriser « l’EBT inexpliqué »
+
+La méthode :
+Suivre l’EBT inexpliqué pour s’affranchir des causes structurelles identifiées et quantifiées.
+Distinguer l’impact volume de l’impact PCS.
+Suivi à la maille régionale + gaz B (5 mailles).
+Déclinaison à la maille sous réseaux (≈ 70 sous réseaux). Pour qu’une maille d’analyse soit réputée exploitable ; sa variabilité doit être inférieure à celle de la maille supérieure.
+Utilisation d’une méthode statistique « 6σ » : lorsque la valeur journalière constatée s’écarte de la valeur médiane historique de plus de 3 fois l’écart-type, la valeur est considérée anormale
+Dans ce cas, recherche poussée afin de comprendre les causes de l’écart et éventuellement de rectifier les valeurs erronées
+Suivi au quotidien : détecter au plus tôt les valeurs anormales à fort impact
+
+Lors d’une correction liée à une relève, il est important de corriger au plus proche de la réalité chaque journée. Sinon cela peut perturber l’analyse EBT (cacher d’autres problèmes, induire des fausses VA, rendre la variabilité de l’EBT plus importante)
+
+effet mirroir :
+S’il y a un problème de donnée sur le comptage d’interface.
+Exemple: le comptage est à 0 alors qu’il devrait être à 20GWh
+SR1:
+Ce comptage est une entrée, donc j’aurai un EBT négatif de l’ordre de -20GWh
+SR2:
+Ce comptage est une sortie, donc j’aurai un EBT positif de l’ordre de 20GWh
+→ Les EM sont à corriger/estimer pour éviter de cacher des erreurs plus petites qui touchent la donnée Transactionnelle sur la journée en question ou dans l’historique
+
+
+## EBT : Objectifs
+
+Objectifs CRE : 
+Maitriser l'EBT: expliquer ses évolutions
+Prévoir l'EBT: discussion du tarif de l'année suivante en septembre
+
+Objectifs métier :
+Tarif CRE –3%
+4 Valeurs atypiques par an  au National (Volume et PCS)
+Baisser l'écart-type du National et des Territoires
+Limiter le sous-comptage
+Avoir des Sous-réseaux Fiables
+
+Un EBT maitrisé n'est pas un BET à 0 mais un EBT stable et expliqué
+
+Amélioration de la qualité des données de stock 1ère cause de variabilité de l’EBT journalier (Évolutions Simone)
+Utilisation des données des GRD pour détecter des consommations atypiques
+Outil casse compteur (compter vite/bien)
+Groupes de calculs ETR (Bilan, EBT , comparaison…)
+Décliner la méthode à la maille sous réseau. (Prévu dans ETR)
+Utiliser la maille horaire pour détecter des problèmes éventuels
+Détecter de plus en plus tôt les valeurs atypiques à fort impact !
+Outil DESOCO pour aider l’analyse du sous-comptage
+
+## Données
+
+Selon la finalité, différents outils sont à disposition:
+Pour vérifier que les données que l’on va publier sont cohérente → EBT via ETR
+Pour aller plus loin dans l’analyse et vérifier que l’on a pas « loupé » un problème → EBT via Marcel
+
+Marcel :
+avantages :
+Historique long
+facilité dextraction 
+disponivilités de tous les paramteres EBT model et inexplique
+inconvenient 
+Raffaracihssement des données 
+traitement de l'EBT J+1 pas possible avant les publications
+
+ETR 
+avantages 
+données a jour 
+possibili de calculer un EBT J+1 avant la publication et entre les tirs Simone
+Historique limité 
+Extraction plus longue 
+Limité à l'EBT réalisé et impact PCS
+
+
+
+
+
+
+
+
+
+
+
+- Référentiel métier : détermination des périmetre père et fils avec biais des différents postes (Attention type de gaz zone B)
+- Controle cohérence référentiels
+- Analyse du model 
+- cohérence des calcul 
+- affranchiessmenet du cube 
+- effet mirroir
+- descendre de maille 
+- sous comptage turbine comparer de année en années permettant de voir si amélioration ou non -> mise en place d'action correctif 
+- predire lees ellement du model dont le sous comptage avec la conso au livraion: regresision polynomiale
+- ecart type de l'ebt 
+- methode 6 sigma
+- inteerface majeur 
+- ebt par bilan 
+- descendre de maille nat -> reg-> ssr-> pce
+- calcul de bias de la dsi 
+- integration de ces biais 
+- suppression des taches chronafage de reporting et axes plus le metier sur l'analyse des données et les orientant la ou mener l'enquete 
+
+- 
+
+
+
+piste de mémoire : 
+
+Intégration statistique/ Stratégie Pour les decideurs 
+Analyse des besoin 
+refonte d'un processus en declun 
+cohérence des données 
+businness intelligence and knowledge management 
+
+
+
+-----------------------------------------------------------------
+
+# Écart Bilan Technique
+
+## Préambule
+
+### Définition
+
+L'Écart Bilan Technique (EBT) mesure la différence entre les quantités de gaz entrant et sortant du territoire. Le gaz naturel qui entre sur le réseau de GRTgaz provient de plusieurs points : opérateurs adjacents (frontières), stockages, terminaux méthaniers, producteurs de biométhane et rebours, appelés les « quantités entrantes ». À l’inverse, le gaz quittant le réseau, désigné comme les « quantités sortantes », est destiné aux livraisons pour nos clients industriels, aux opérateurs adjacents, aux stockages, au gaz carburant, aux mises à l'évent, ainsi qu'aux variations de stock en conduite.
+
+L'EBT est comptabilisé comme une dépense d’exploitation (OPEX - Operating Expense).
+
+### Objectifs
+
+L’objectif principal est de s’assurer que les quantités entrantes sont égales aux quantités sortantes. Si ce n’est pas le cas, cela indique un déséquilibre au sein du réseau, que nous appelons « EBT réalisé ».
+
+Il est important de noter que toutes les entrées et sorties sont soit comptabilisées, soit estimées, y compris les variations de stock en conduite et les gaz mis à l’évent. Si un déséquilibre est détecté, il est nécessaire de l'expliquer. Les déséquilibres peuvent être dus à des causes accidentelles ou structurelles, et nous parlons alors respectivement d'« EBT inexpliqué » et d'« EBT modélisé ».
+
+Les objectifs de l'EBT sont définis à la fois par la CRE et par les équipes métiers.
+
+#### Objectifs CRE
+
+Du point de vue de la CRE, l'objectif central est de garantir la transparence et la maîtrise de l'EBT. Il est impératif que les fluctuations de l'EBT soient correctement expliquées afin d'identifier les causes des déséquilibres sur le réseau. La maîtrise de ces écarts a une importance particulière dans le cadre de la régulation tarifaire. En effet, il est nécessaire d'anticiper les variations de l'EBT pour préparer les discussions avec la CRE, notamment lors de la révision annuelle des tarifs qui a lieu en septembre.
+
+#### Objectifs métier
+
+Les équipes métiers, quant à elles, se concentrent sur des objectifs plus opérationnels afin de garantir une gestion efficace de l'EBT. L'un des objectifs majeurs est de réduire les coûts liés au tarif CRE, en visant une diminution de 3 % de ce dernier. En parallèle, une attention particulière est portée à la gestion des anomalies, avec l'objectif de ne pas dépasser quatre valeurs atypiques par an au niveau national, que ce soit en termes de volume ou de PCS. La réduction de la variabilité est également un enjeu important : il est primordial de diminuer l'écart-type à la fois au niveau national et territorial pour stabiliser l'EBT.
+
+De plus, les équipes travaillent activement à améliorer la précision des mesures en limitant le sous-comptage, ce qui permet de réduire les déséquilibres non expliqués. La fiabilité des sous-réseaux est également un facteur clé, car elle garantit la performance et la sécurité du transport de gaz. Enfin, un EBT maîtrisé ne signifie pas nécessairement un écart à zéro, mais plutôt un EBT stable et entièrement expliqué.
+
+### Causes
+
+#### Accidentelles
+
+Les causes accidentelles incluent les erreurs de mesure, les bypass accidentels, les erreurs de saisie manuelle ou de relevé, les dysfonctionnements matériels, les problèmes de transmission de données, les pannes des systèmes d’information ou les perturbations dans le calcul du PCS (Pouvoir Calorifique Supérieur) causées par des travaux. Ces incidents sont généralement temporaires et peuvent être corrigés. Si elles ne sont pas identifiées et corrigées, elles seront comptabilisées dans l’EBT inexpliqué.
+
+#### Structurelles
+
+Les causes structurelles que GRTgaz cherche à éliminer sont, par exemple, le sous-comptage aux points de livraison, les erreurs liées aux rampes à diaphragme, les fuites internes, l’impact des relevés mensuels et l’influence des écarts de mesure du PCS entre les chromatographes des ressources et ceux utilisés pour les emplois. Ces éléments permettent de modéliser l'EBT expliqué, ou « EBT modélisé ». Nous arrivons à les quantifier grâce à des modèles de calculs et des analyses de données.
+
+### Mailles d'analyse
+
+L’analyse de l’EBT s’effectue à plusieurs niveaux territoriaux :
+- National,
+- Territorial, incluant 4 mailles en gaz H et 1 en gaz B,
+- Sous-réseaux, soit environ 70 sous-réseaux, en différenciant ceux en gaz H et en gaz B
+
+Pour chacune de ces mailles, nous calculons l’EBT réalisé, l’EBT modélisé et l’EBT inexpliqué, avec des particularités spécifiques à chaque maille.
+
+### Données
+
+Les principales données utilisées pour le calcul de l’EBT sont les données de comptage et les données de PCS. La validation unitaire des données via les progiciels ETR (vérification des données de comptage) et SIRENE (calcul du PCS) est cruciale pour garantir des données de production fiables. Le croisement des données et leur analyse par rapport aux historiques permettent de détecter rapidement les données aberrantes, d'orienter les enquêtes et d'identifier les causes potentielles des déséquilibres.
+
+De plus, les données de comptage sont exprimées en énergie, en kWh, tandis que les données de PCS sont en kWh/Nm³.
+
+Les données pré-calculées pour l'EBT sont stockées dans le cube multidimensionnel Marcel numéro 7, intitulé « Analyse EBT ».
+Nous pouvons également retrouver les données brutes de comptage et de PCS, sans traitement préalable au calcul, dans la PDA (Plateforme de Données d'Analyse).
+
+## EBT réalisé
+
+L'EBT réalisé, correspondant donc au gaz non comptabilisé, se calcule comme suit :
+$$
+EBT réalisé = \sum \text{Quantités entrantes} - \sum \text{Quantités sortantes}
+$$
+
+
+## EBT expliqué
+
+### Sous-comptage des rampes à diaphragme
+
+### Sous-comptage des postes de livraison
+
+Le sous comptage des postes de livraion  
+Modèle permettant la determination des valeurs  
+ordre de granduer : entre 600 et 700 GWh/an  
+Principal du calcul : pour chaque PCE ayant un calibre Turbine, et pour chaque heure  
+Calvul du coefficient C pui du Volume Brut  
+Calcul du %Qmax = Volume brut/ Volume brut max  
+En fonction de la plage su lqauelle se trouve le %Qmax application de la formule déterminee par les courbes du modele  
+Interpolation ou extrapolation des courbes en fonction de la pression  
+Nb:
+Nous ne calculons pas de sous-comptage pour un piston (sous-comptage faible voir inexistant) -> Importance de l’attribut Calibre dans ETR (G_ = Turbine; P_ = Piston)  
+Débit de démarrage: 0,7%Qmax en instantanée et 0,4%Qmax en moyenne horaire. En dessous le compteur ne compte plus (non modélisé)  
+Le sous-comptage est estimé dans l’EBT il ne doit pas être estimé dans ETR (donc non facturé au client)  
+Le sous-comptage d’un PCE C est la somme des sous-comptages des fils affectés de leur coefficient
+
+### Impact GASSCO
+
+Changement du chromatographe de GASSCO qui ne mesure plus les C6+ (=>PCS sous-estimé)
+
+### Fuites internes
+
+### Impact de la température du stock en conduite
+Impact de la Température du stcok en conduite  
+Simon prend une température du gaz fixe à 1à degres dans sa modelisation. la temperature du gaz peut etre en dessousou aaus dessus seln la préeriode
+cela produire des transfret d'BEt  mais sur dun eannée completre l'impact doit s'annluer  
+
+
+## EBT Inexpliqué
+
+Impact PCS = Impact de l'écart de PCS entre les entrées et les sorties sur l'EBT (KWh)
+Impact volume inexpliqué = EBT réalis - Modelisation EBT - Impact PCS
+Les causes accidentelles de l’EBT : maîtriser « l’EBT inexpliqué »
+
+La méthode :
+Suivre l’EBT inexpliqué pour s’affranchir des causes structurelles identifiées et quantifiées.
+Distinguer l’impact volume de l’impact PCS.
+Suivi à la maille régionale + gaz B (5 mailles).
+Déclinaison à la maille sous réseaux (≈ 70 sous réseaux). Pour qu’une maille d’analyse soit réputée exploitable ; sa variabilité doit être inférieure à celle de la maille supérieure.
+Utilisation d’une méthode statistique « 6σ » : lorsque la valeur journalière constatée s’écarte de la valeur médiane historique de plus de 3 fois l’écart-type, la valeur est considérée anormale
+Dans ce cas, recherche poussée afin de comprendre les causes de l’écart et éventuellement de rectifier les valeurs erronées
+Suivi au quotidien : détecter au plus tôt les valeurs anormales à fort impact
+
+Lors d’une correction liée à une relève, il est important de corriger au plus proche de la réalité chaque journée. Sinon cela peut perturber l’analyse EBT (cacher d’autres problèmes, induire des fausses VA, rendre la variabilité de l’EBT plus importante)
+
+effet mirroir :
+S’il y a un problème de donnée sur le comptage d’interface.
+Exemple: le comptage est à 0 alors qu’il devrait être à 20GWh
+SR1:
+Ce comptage est une entrée, donc j’aurai un EBT négatif de l’ordre de -20GWh
+SR2:
+Ce comptage est une sortie, donc j’aurai un EBT positif de l’ordre de 20GWh
+→ Les EM sont à corriger/estimer pour éviter de cacher des erreurs plus petites qui touchent la donnée Transactionnelle sur la journée en question ou dans l’historique
+
+
+
+
+
+
+
+
+
+
+
+## Interfaces majeurs
+Interfaces majeurs influence
+le quivi des interfaces majeurs et primordial pour maitriser l'EBT
+Un biais de comptage meme inferieur aerreurs maximales tolerres peut modifier la tendance de l'ebt
+de meme un changement sur les fluex d'une année sur l'autre peut chnager sa tendnace
+
+
+
+
+
+
+
+Amélioration de la qualité des données de stock (1ᵉ cause de variabilité de l’EBT journalier)
+Utilisation des données des GRD pour détecter des consommations atypiques  
+Outil casse compteur (compter vite/bien)  
+Groupes de calculs ETR (Bilan, EBT , comparaison…)  
+Décliner la méthode à la maille sous réseau. (Prévu dans ETR)  
+Utiliser la maille horaire pour détecter des problèmes éventuels  
+Détecter de plus en plus tôt les valeurs atypiques à fort impact !  
+Outil DESOCO pour aider l’analyse du sous-comptage  

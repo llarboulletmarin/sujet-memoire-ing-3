@@ -18,6 +18,13 @@
   show math.equation: set text(weight: 400)
   set heading(numbering: "1.1.")
 
+  show outline.entry.where(
+    level: 1
+  ): it => {
+    v(12pt, weak: true)
+    strong(it)
+  }
+
   show heading: it => {
     if it.level > 5 {
       parbreak()
@@ -58,10 +65,10 @@
   pad(
     top: 1.5em,
     bottom: 1.5em,
-    x: 5em,
+    x: -0em,
     grid(
-      columns: (1fr,) * calc.min(3, authors.len()),
-      gutter: 1em,
+      columns: (2fr,) * calc.min(3, authors.len()),
+      gutter: -1em,
       ..authors.map(author => align(center)[
         *#author.name* \
         #author.role \

@@ -1,4 +1,3 @@
-Pour un mémoire structuré et bien équilibré sur l’Écart Bilan Technique (EBT), voici un plan en trois grandes parties, avec un ordre logique qui te permet de gérer les différentes phases du projet en 4 mois. J’ai intégré des sous-parties pour chaque section afin de couvrir les principaux aspects techniques, fonctionnels et organisationnels.
 
 Plan du Mémoire
 
