@@ -1,9 +1,8 @@
 #import "template.typ": *
 
-
 #show: project.with(
   title: "Proposition de sujet de mémoire",
-  subtitle : "Optimisation des processus metiers : l'Écart Bilan Technique chez GRTgaz",
+  subtitle : "Optimisation d'un processus métier : l'Écart Bilan Technique",
   authors: (
     (
       name: "Stéphane GODET",
@@ -28,116 +27,76 @@
     ),
   ),
   logo_school: image("logo_ecole.png", width: 70%),
-  logo_company : image("logo_entreprise.png", width: 50%)
+  logo_company : image("logo_entreprise.png", width: 50%),
+  abstract:"Ce document propose un sujet de mémoire pour mon projet de fin d’études d'ingénieur informatique, réalisé dans le cadre de mon apprentissage au sein de GRTgaz. Le sujet envisagé porte sur l'optimisation d'un processus métier liés à l’Écart Bilan Technique."
 )
 
-
-Ce document propose un sujet de mémoire pour mon projet de fin d’études d'ingénieur informatique, réalisé dans le cadre de mon apprentissage au sein de GRTgaz. Le sujet envisagé porte sur l'optimisation des processus métiers liés à l’Écart Bilan Technique (EBT). Afin de vous présenter ce sujet, je vais commencer par explorer la problématique  liée à l'EBT et les enjeux associés. Je définirai ensuite les objectifs du projet et les résultats attendus, avant de détailler la méthodologie envisagée pour atteindre ces objectifs.
-
-#outline(indent: auto, title:auto)
-
-= L’Écart Bilan Technique
+= L'Écart Bilan Technique
 
 == Définition
 
-L’EBT correspond à la différence entre les quantités de gaz enregistrées en entrée et en sortie du réseau de GRTgaz.
+L'Écart Bilan Technique (EBT) correspond à la différence entre les quantités de gaz mesurées à l'entrée et à la sortie du réseau de GRTgaz. Les entrées incluent le gaz provenant des opérateurs adjacents #footnote[Opérateurs de transport de gaz situés à l'extérieur des frontières françaises], des stockages, des terminaux méthaniers, des producteurs de biométhane et des rebours #footnote[Points de réinjection du gaz excédentaire issu de la production de biométhane]. Les sorties, quant à elles, regroupent les livraisons aux clients industriels, aux distributions publiques, les mises à l'évent, le gaz carburant, ainsi que les variations de stock en conduite.
 
-$ "EBT" = sum "Quantités entrantes" - sum "Quantités sortantes" $
+L'EBT joue un rôle central dans le fonctionnement du réseau, en garantissant une cohérence entre les flux entrants et sortants. Un déséquilibre signale une anomalie qui nécessite une analyse approfondie.
 
-Les « quantités entrantes » incluent le gaz provenant de diverses sources : opérateurs adjacents #footnote[Opérateurs de transport de gaz situés à l’extérieur des frontières], stockages, terminaux méthaniers, producteurs de biométhane et rebours #footnote[Gaz réinjecté dans le réseau en raison d’un excédent de production de biométhane]. À l’inverse, les « quantités sortantes » englobent les livraisons destinées aux clients industriels, les mises à l’évent, le gaz carburant, ainsi que les variations de stock en conduite.
+== Objectifs et enjeux
 
-== Objectifs
+L'objectif principal de l'EBT est d'assurer un suivi précis de ces écarts pour répondre aux exigences de la Commission de Régulation de l'Énergie (CRE) et aux besoins internes de GRTgaz.
 
-L’objectif principal est de s’assurer que les quantités entrantes sont égales aux quantités sortantes. Si ce n’est pas le cas, cela indique un déséquilibre au sein du réseau, que nous appelons « EBT réalisé ».
+La CRE impose une transparence absolue et une maîtrise rigoureuse de cet indicateur, en lien notamment avec les discussions tarifaires, comme lors de la révision des tarifs d'accès des tiers aux réseaux de transport (ATRT) @CRETarifsAcces @CRE2024-22.
 
-Il est important de noter que toutes les entrées et sorties sont soit comptabilisées, soit estimées, y compris les variations de stock en conduite et les gaz mis à l’évent. Si un déséquilibre est détecté, il est nécessaire de l'expliquer. Les déséquilibres peuvent être dus à des causes accidentelles ou structurelles, et nous parlons alors respectivement d'« EBT inexpliqué » et d'« EBT modélisé ».
-
-Les objectifs de l'EBT sont définis à la fois par la Commission de Régulation de l’Énergie (CRE) et par les équipes métiers.
-
-=== Objectifs CRE
-
-Du point de vue de la CRE, l'objectif central est de garantir la transparence et la maîtrise de l'EBT. Il est impératif que les fluctuations de l'EBT soient correctement expliquées afin d'identifier les causes des déséquilibres sur le réseau. La maîtrise de ces écarts a une importance particulière dans le cadre de la régulation tarifaire. En effet, il est nécessaire d'anticiper les variations de l'EBT pour préparer les discussions avec la CRE, notamment lors de révision des tarifs@CRETarifsAcces. Un de ces tarifs est le tarif d'accès des tiers aux réseaux de transport (ATRT).
-
-Le tarif ATRT, est fixé par la CRE, définit le coût d'utilisation des infrastructures de transport et de distribution de gaz naturel. Il couvre les frais liés à l’acheminement du gaz depuis les points d’entrée du réseau (terminaux méthaniers ou interconnexions internationales) jusqu’aux consommateurs finaux, via les réseaux de transport (comme celui de GRTgaz) et de distribution. Ce tarif assure une facturation équitable et transparente, essentielle pour garantir un accès fiable et non discriminatoire aux réseaux de gaz. Pour la période tarifaire à venir (2024-2027) c'est le tarif ATRT8 (delibération de la CRE @CRE2024-22).
-
-=== Objectifs métier
-
-Les équipes métiers se concentrent sur des objectifs opérationnels pour assurer une gestion efficace de l'EBT. Parmi ces objectifs, la réduction des coûts liés au tarif CRE est une priorité. Parallèlement, une attention particulière est accordée à la gestion des anomalies, avec pour objectif de limiter le nombre de valeurs atypiques observées chaque année. Pour identifier et réduire ces valeurs, nous utilisons notamment la méthode _6 sigma_.
-
-La méthode _6 sigma_ vise à améliorer la qualité des processus en réduisant les défauts et les variations@pillet2013six. Elle repose sur une démarche structurée appelée _DMAIC_, qui se décompose en cinq étapes : Définir, Mesurer, Analyser, Améliorer, Contrôler. À l’aide d’outils statistiques, elle permet d’identifier les problèmes et d’apporter des solutions durables.
-
-Au cœur de cette approche se trouve le concept de capabilité du processus, qui évalue la capacité d’un processus à respecter les spécifications attendues. Cette capabilité est exprimée par un indice sigma, calculé en comparant la dispersion des résultats (écart-type) aux limites spécifiées du processus@BazinConseilSixSigma. Un processus _6 sigma_ idéal produit des résultats qui restent dans des limites situées à six écarts-types de la moyenne, réduisant ainsi le risque de défauts.
-
-Dans le contexte de l'EBT, nous calculons l'EBT inexpliqué (lié à des causes accidentelles) pour chaque jour de l’année. En calculant la moyenne et l’écart-type de ces valeurs sur une période donnée, par exemple 100 jours, nous pouvons évaluer la capabilité du processus en les comparant à un seuil défini. Cette analyse met en évidence les journées présentant des anomalies significatives, permettant aux équipes de prioriser leur traitement. Ainsi, elles se concentrent sur les jours les plus critiques pour optimiser l’EBT.
-
-== Enjeux
-
-Comme nous l'avons vu, l’EBT est un indicateur clé pour GRTgaz, qui permet de mesurer la cohérence des flux de gaz sur le réseau et d’assurer la fiabilité des données de comptage. Par ailleurs, il a un impact financier direct, étant comptabilisé comme une dépense d’exploitation, et constitue un élément important dans la régulation tarifaire supervisée par la CRE.
-
-Ces enjeux soulignent la nécessité d’un suivi rigoureux et d’une maîtrise des déséquilibres, qu’ils soient liés à des causes accidentelles ou structurelles.
+Pour GRTgaz, l'EBT est également un indicateur stratégique. Il permet de garantir la fiabilité des données de comptage et d'assurer la cohérence des flux gaziers. Les équipes métiers visent à réduire les valeurs atypiques, en s'appuyant sur un suivi méthodique des déséquilibres. En effet, ces derniers, qu'ils soient accidentels ou structurels, ont un impact financier direct en tant que dépenses d'exploitation, tout en influençant la régulation tarifaire de la CRE.
 
 = Problématique
 
-Les outils actuels de suivi de l’EBT présentent plusieurs limites. Leur complexité rend leur utilisation difficile pour les équipes métiers, et des pannes régulières nuisent à la continuité des opérations. De plus, les pratiques de _shadow IT_, comme l’utilisation de tableurs Excel ou d’autres solutions informelles, sont devenues courantes@rentrop2012shadow. Si ces pratiques permettent de contourner temporairement les diffcultés de développement d’outils dédiés, elles posent des problèmes de sécurité, de fiabilité des données et de conformité avec les standards de l’entreprise.
+Le suivi de l’EBT repose actuellement sur des solutions de _shadow IT_, c’est-à-dire des outils développés en dehors du cadre informatique officiel de l’entreprise @rentrop2012shadow, tels que des fichiers Excel ou des bases de données locales. Si ces solutions répondent aux besoins immédiats des équipes, elles présentent des risques significatifs : pertes de données, erreurs de calcul, failles de sécurité et non-conformité aux standards de l’entreprise. De plus, chaque territoire de GRTgaz a adopté ses propres outils et méthodes de travail, compliquant le partage, la vérification des informations et la gestion globale de l’EBT.
 
-Par ailleurs, l’absence de documentation à jour et le manque de transfert de savoir-faire pénalisent la pérennité des solutions mises en place. Ces faiblesses affectent la capacité des équipes à maintenir une gestion efficace de l’EBT sur le long terme.
+Pourtant, GRTgaz dispose d’un système basé sur un cube multidimensionnel (_OLAP_) conçu pour calculer l’EBT. Ce cube repose sur un référentiel métier intégrant toutes les règles de calcul nécessaires. Cependant, ce système reste sous-exploité. L’habitude des équipes de recourir à leurs outils alternatifs, combinée à une mise à jour annuelle du référentiel par la Direction des Systèmes d’Information (DSI) au lieu d’une fréquence plus élevée, limite l’adoption et l’efficacité de cette solution.
+
+Enfin, l’absence de documentation à jour et le manque de transfert de savoir-faire pénalisent la pérennité des solutions en place, rendant difficile l’harmonisation des pratiques et la comparaison des résultats entre les territoires. Ces faiblesses affectent la capacité des équipes à maintenir une gestion efficace de l’EBT sur le long terme.
 
 = Objectifs du projet
 
-L’objectif principal de ce projet est de concevoir un outi pour le suivi de l’EBT, en tenant compte des spécificités métiers et des exigences réglementaires de la CRE. Cet outil devra être fiable et parfaitement intégré aux systèmes d’information existants de GRTgaz, tout en simplifiant et en optimisant les processus actuels.
+Le projet vise à développer un nouvel outil pour le suivi de l'EBT. Cet outil remplacera les fichiers Excel et autres solutions non officielles actuellement utilisés. Il s’intégrera aux systèmes d’information existants, notamment les bases de données déjà en place.
 
-Pour améliorer la gestion des données, le projet vise à repenser les flux d’alimentation des outils afin de les rendre plus simples et plus efficaces. Une automatisation des contrôles de cohérence sera mise en place pour identifier rapidement les anomalies et renforcer la qualité des données. Par ailleurs, une analyse approfondie des sources de données sera réalisée, comparant les cubes multidimensionnels (_OLAP_)  à des connexions au  _Data Warehouse_. L’objectif est de choisir l’approche la plus adaptée pour optimiser le traitement et l’exploitation des données. La cartographie des données et des référentiels métiers permettra également de mieux comprendre l’écosystème des données utilisées et d’identifier les éventuelles incohérences ou points d’amélioration.
+L’outil devra permettre aux équipes de mieux comprendre et réduire les écarts inexpliqués. Pour cela, des fonctionnalités de datavisualisation seront intégrées, s’appuyant sur des solutions de _Business Intelligence_. Ces fonctionnalités faciliteront l’accès aux données et leur interprétation @OracleBI, grâce à des représentations claires et synthétiques.
 
-L’outil devra être intuitif et ergonomique afin de faciliter son adoption par les équipes métiers. Des fonctionnalités de datavisualisation seront intégrées pour offrir une représentation claire et synthétique des données, facilitant ainsi l’analyse et la prise de décision. En parallèle, une documentation complète sera développée pour accompagner les utilisateurs, garantir une compréhension approfondie des fonctionnalités de l’outil et assurer sa pérennité.
+Un autre objectif clé sera la création d’une documentation complète et structurée. Cette documentation détaillera l’utilisation de l’outil ainsi que les méthodes de calcul employées, offrant une référence fiable pour les mises à jour et les évolutions futures.
 
-Enfin, la conduite du changement jouera un rôle crucial dans ce projet. Pour permettre une transition fluide vers ce nouvel outil, des formations spécifiques et un accompagnement personnalisé seront proposés aux utilisateurs.
-
-= Résultats attendus
-
-Le projet doit aboutir à la mise en production d’un outil opérationnel pour le suivi de l’EBT, destiné à remplacer les solutions informelles actuellement utilisées.
-
-Sur le plan des performances, les résultats attendus comprennent une réduction notable des déséquilibres inexpliqués et une diminution de la variabilité de l’EBT.
-
-Enfin, l’intégration réussie de cet outil passera par une adoption par les équipes. Celle-ci sera soutenue par une documentation claire, des formations adaptées et un transfert de compétences.
+La réussite du projet dépendra en grande partie de l’adoption du nouvel outil par les équipes. Pour accompagner cette transition, un plan de conduite du changement sera mis en œuvre. Ce plan inclura des formations adaptées aux différents profils d’utilisateurs, une communication régulière sur les bénéfices de l’outil, ainsi qu’un accompagnement personnalisé pendant les premières phases d’utilisation @benzaida2008contribution. Ces actions viseront à lever les résistances potentielles et à encourager une adoption progressive et durable de la solution.
 
 = Phases clés du projet et rôles associés
 
-== Analyse des besoins métiers
+Dans le cadre de mon mémoire, qui s'étend sur quatre mois à temps plein, je me concentrerai sur deux phases principales : l'analyse des besoins métiers et la conception, suivie de la validation technique. La première phase consistera à comprendre les attentes des utilisateurs, tandis que la deuxième se focalisera sur la réalisation d'un _Proof of Concept_ (_PoC_) pour démontrer la faisabilité et valider l'approche technique @asanaProofOfConcept, avec le développement d'un prototype fonctionnel.
 
-La première étape du projet consiste à l'analyse des besoins métiers. Elle permet de bien comprendre les attentes des utilisateurs. En collaboration avec les experts métiers, notamment les référents EBT et des responsables des données de comptage, je mènerai des entretiens pour recueillir les exigences techniques et fonctionnelles et également pour explorer les processus existants, en identifiant leurs limites et en définissant précisément les besoins de l’outil à développer. Mon rôle sera de formaliser ces besoins sous forme de spécifications fonctionnelles, servant de base à la phase de développement. Je ferai aussi le lien entre les attentes des utilisateurs et les solutions techniques envisagées.
+== Analyse des besoins
 
-== Prototypage et développement
+L'analyse des besoins métiers est une phase cruciale pour comprendre les attentes des utilisateurs. Cette analyse est d'autant plus importante que le suivi de l'EBT est réparti sur les quatre territoires de GRTgaz, chacun disposant de sa propre équipe d'analystes.
 
-Une fois les besoins métiers clairement définis, la phase de prototypage et de développement pourra commencer. Dans un premier temps, un _proof of concept_ (PoC) sera réalisé pour valider les choix techniques et fonctionnels. Ce PoC permettra de vérifier que les solutions envisagées, tant au niveau de l’architecture logicielle que de la modélisation des données, sont adaptées aux exigences identifiées. Il servira également de base pour orienter le développement en fonction des retours des utilisateurs.
+L'organisation actuelle implique des équipes de six à huit analystes par territoire, parmi lesquelles l'un est désigné comme référent territorial. Cette structure est coordonnée par un référent EBT national qui supervise l'ensemble des activités et guide les différentes équipes. Pour mener à bien cette phase d'analyse, des déplacements sur les différents sites et l'organisation de réunions seront nécessaires afin de recueillir les besoins spécifiques de chaque équipe.
 
-À partir du PoC, des prototypes plus aboutis seront créés. Ces prototypes offriront une version fonctionnelle de l’outil, permettant de tester les fonctionnalités clés dans un environnement proche de la réalité. L’implication des utilisateurs à ce stade sera essentielle : leurs retours permettront d’affiner l’interface, de corriger les éventuelles incohérences et de s’assurer que l’outil réponde précisément aux besoins identifiés.
+Ma mission principale durant cette phase sera de collaborer avec les différents acteurs du projet : les référents EBT territoriaux, le référent national, les responsables des données de comptage et les équipes de management. L'analyse s'articulera autour de plusieurs axes : l'utilisation quotidienne de l'outil, les problématiques à résoudre, les spécificités de chaque territoire et les moments critiques d'utilisation. Cela constituera le socle du projet et aboutira à la rédaction de spécifications fonctionnelles détaillées. Mon rôle sera de faire le lien entre les besoins exprimés par les utilisateurs et les solutions techniques envisageables.
 
-Mon rôle consistera à superviser l’ensemble de cette phase, depuis la conception initiale jusqu’à l’intégration des retours des utilisateurs.
+== Conception et validation technique
 
-== Industrialisation et intégration
+Après l'analyse des besoins, la phase suivante est la conception technique et sa validation. Elle commence par une période de recherche et de conception, suivie d’un _PoC_ pour valider les choix techniques.
 
-L’étape suivante sera celle de l’industrialisation, où l’outil validé sera intégré dans le système d'information de GRTgaz. L'industrialisation consiste à transformer une activité, un processus ou un système artisanal en un format standardisé et répétable. Ce processus utilise des technologies, des méthodes et des outils pour augmenter l'efficacité, améliorer la qualité et réduire les coûts. Il comprend plusieurs étapes, telles que la standardisation du code, l’optimisation des performances, l’amélioration de l’interface utilisateur, l’intégration de fonctionnalités de gestion des erreurs, la documentation exhaustive et la conformité aux normes et réglementations. Ce concept s’inscrit dans une démarche plus large de génie logiciel, qui applique des principes d’ingénierie à toutes les phases du cycle de vie des logiciels, de leur conception à leur maintenance.
+La première étape consiste à analyser l'existant. Actuellement, les données de l'EBT sont stockées dans un cube _OLAP_ et accessibles via des requêtes _MDX_ #footnote[Langage de requête pour les cubes multidimensionnels] (_Multidimensional Expressions_). Cependant, des incohérences dans les calculs existent, dues à une mise à jour asynchrone du référentiel métier. Il est donc nécessaire de revoir la gestion de ce référentiel.
 
-Cette phase impliquera une collaboration étroite avec la Direction des Systèmes d'Information (DSI). Ensemble, nous veillerons à l’intégration technique de l’outil tout en respectant les exigences de sécurité et de conformité des systèmes existants. Je serai chargé de formaliser les spécifications nécessaires pour assurer cette intégration, tandis que la DSI jouera un rôle clé dans la validation des aspects techniques, notamment en matière de sécurité et de conformité des données.
+La méthode _Six Sigma_, actuellement utilisée dans le suivi de l'EBT, aide à identifier et réduire les valeurs atypiques qui causent les déséquilibres @pillet2013six. Cette approche, basée sur le modèle DMAIC (Définir, Mesurer, Analyser, Innover, Contrôler), évalue la capacité des processus à respecter les spécifications @BazinConseilSixSigma. Actuellement, les calculs sont réalisés dans Excel avec des macros _VBA_ #footnote[Langage de programmation pour Excel qui permet d'automatiser des tâches répétitives, de créer des macros pour manipuler et traiter des données] (_Visual Basic for Applications_), limitant leur efficacité et maintenabilité. Pour moderniser ces processus, _Python_ semble être le langage le plus adapté. Il offre des capacités puissantes pour la manipulation des données et les calculs statistiques. De plus, GRTgaz dispose déjà d’une équipe _Data_ au sein de la DSI, ce qui faciliterait l’intégration du développement dans leurs processus. _Python_ est aussi compatible avec la nouvelle plateforme  _Data_ de GRTgaz, qui embarque _Snowflake_ #footnote[Plateforme d'hebergement de données dans le cloud] pour le stockage et l'analyse des données.
 
-== Formation et transfert de compétences
+Concernant la visualisation, deux options sont possibles : _Power BI_, déjà intégré dans la suite _Microsoft_ de GRTgaz, ou _Streamlit_, un module _Python_ compatible avec _Snowflake_. La question du stockage des résultats devra également être abordée.
 
-Après l’industrialisation, une phase de formation et de transfert de compétences sera mise en place. Il sera crucial que les utilisateurs soient formés à l’utilisation de l'outil. Je serai responsable de l’organisation des sessions de formation et de la rédaction de la documentation nécessaire. Cette documentation couvrira les aspects techniques de l’outil, ainsi que son utilisation au quotidien. Un support sera également prévu pour résoudre d'éventuels problèmes rencontrés lors de la mise en service de l'outil.
-
-== Suivi des résultats et évaluation de l’impact
-
-Enfin, pour évaluer l'impact de l'outil sur les processus métiers, un suivi des résultats sera réalisé. Je serai en charge de l’analyse des performances de l'outil à travers des indicateurs définis en amont. L’objectif sera de mesurer la réduction de l'EBT, la qualité des données générées et l’adoption de l’outil par les utilisateurs. Un rapport détaillé sera préparé pour synthétiser les résultats, identifier les points d’amélioration et proposer des évolutions futures.
+Pour valider ces choix techniques, un _PoC_ sera développé. Cela permettra de tester les fonctionnalités essentielles et valider l'architecture. Les retours des utilisateurs permettront d'affiner l'interface et de corriger les incohérences avant le développement complet. Cette phase nécessitera une collaboration étroite avec l'équipe _Data_ pour valider l’approche technique, identifier les synergies avec les outils existants, et optimiser les flux de données. Il sera aussi important de réfléchir à la structure des tables (faits, dimensions) et à la création de vues _SQL_ #footnote[Langage de requête pour les bases de données relationnelles] (_Structured Query Language_) pour faciliter l'accès aux données.
 
 = Calendrier prévisionnel
 
-Le calendrier prévisionnel du projet est le suivant :
-- Analyse des besoins métiers : 1 mois
-- Prototypage et développement : 2 à 3 mois
-- Industrialisation et intégration : 1 à 3 mois
-- Formation et transfert de compétences : 2 semaines à 1 mois
+La phase d'analyse, d'une durée d'un mois, posera les bases du projet. Elle consistera à étudier les besoins des quatre territoires et à définir l'architecture technique en collaboration avec l'équipe _Data_.
 
-Si la charge minimale du projet faisant l’objet du mémoire, est de quatre mois à temps plein, je ne pourrai pas mener le projet dans son intégralité. Je devrai donc me concentrer sur les phases d'analyse des besoins métiers, du PoC et du prototypage.
+La phase de conception et validation technique, prévue sur deux à trois mois, constituera le cœur du projet. Elle commencera par la création d'un _PoC_ pour valider les choix techniques, notamment l’utilisation de _Python_ et _Snowflake_. Ensuite, un prototype fonctionnel sera développé en intégrant les retours des utilisateurs.
 
-Pour les phases de développement et d'industrialisation, cette partie pourait être amorcée mais devra être finalisée par un autre membre de l'équipe, référant de l'EBT au sein de mon pôle. Enfin, la phase de formation et de transfert de compétences sera assurée par les équipes métiers et la DSI.
+La dernière phase sera consacrée à la pérennisation du projet, incluant la documentation technique et utilisateur, ainsi que la formation des équipes chargées du développement futur. Cette étape est essentielle pour assurer la continuité du projet après mon intervention.
 
-#bibliography("bibliography.bib",title: "Reference")
+Des points d'avancement réguliers avec les parties prenantes, en particulier le référent EBT qui reprendra le développement, permettront d'ajuster le planning en fonction des besoins et contraintes rencontrés.
+
+#bibliography("bibliography.bib", title: "Bibliographie", style: "ieee")

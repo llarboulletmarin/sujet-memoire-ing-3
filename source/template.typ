@@ -4,14 +4,14 @@
   authors: (),
   logo_school: none,
   logo_company:none,
+  abstract:"",
   body
 ) = {
-  
+
   set document(author: authors.map(a => a.name), title: title)
   set page(
     paper: "a4",
     margin: (left: 20mm, right: 20mm, top: 20mm, bottom: 20mm),
-    numbering: "1",
     number-align: center,
   )
   set text(font: "New Computer Modern", lang: "fr")
@@ -51,7 +51,7 @@
   logo_school,
   logo_company,
 )
-  
+
 
   // Title row
   align(center)[
@@ -79,10 +79,32 @@
     ),
   )
 
+    // Abstract.
+  pad(
+    x: 2em,
+    top: 1em,
+    bottom: 1.5em,
+    align(center)[
+     // #heading(
+     //   outlined: false,
+     //   numbering: none,
+     //   text(0.85em, smallcaps[Résumé]),
+     // )
+      #abstract
+    ],
+  )
+
+  outline(indent: auto, title:auto)
+
 
   // Main body.
+
+
   set par(justify: true)
+  set page(numbering: "1")
+
 
   body
+
   
 }
