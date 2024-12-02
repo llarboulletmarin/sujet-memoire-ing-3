@@ -91,12 +91,23 @@ Pour valider ces choix techniques, un _PoC_ sera développé. Cela permettra de 
 
 = Calendrier prévisionnel
 
-La phase d'analyse, d'une durée d'un mois, posera les bases du projet. Elle consistera à étudier les besoins des quatre territoires et à définir l'architecture technique en collaboration avec l'équipe _Data_.
+Le calendrier prévisionnel de la partie du projet qui me concerne est le suivant :
 
-La phase de conception et validation technique, prévue sur deux à trois mois, constituera le cœur du projet. Elle commencera par la création d'un _PoC_ pour valider les choix techniques, notamment l’utilisation de _Python_ et _Snowflake_. Ensuite, un prototype fonctionnel sera développé en intégrant les retours des utilisateurs.
+#show table.cell: set text(style: "normal", size: 11pt)
+#show table.cell.where(x: 0): set text(style: "normal", weight: "bold")
+#show table.cell.where(y: 0): set text(style: "normal", weight: "bold")
 
-La dernière phase sera consacrée à la pérennisation du projet, incluant la documentation technique et utilisateur, ainsi que la formation des équipes chargées du développement futur. Cette étape est essentielle pour assurer la continuité du projet après mon intervention.
-
-Des points d'avancement réguliers avec les parties prenantes, en particulier le référent EBT qui reprendra le développement, permettront d'ajuster le planning en fonction des besoins et contraintes rencontrés.
+#figure(
+    table(columns: 5,
+    [Mois], [Semaine 1], [Semaine 2], [Semaine 3], [Semaine 4],
+    [1], [Préparation et organisation de l’analyse], [Recueil des besoins], [Analyse et synthèse des retours], [Rédaction des spécifications fonctionnelles],
+    [2], [Analyse de l'existant], [Conception de l'architecture], [Développement du PoC (début)], [Revue et ajustement des choix techniques],
+    [3], [Développement du PoC (suite)], [Tests de validation du PoC], [Révisions et ajustements sur le PoC], [Finalisation du PoC et documentation],
+    [4], [Finalisation du PoC], [Validation technique et utilisateur], [Rédaction de la documentation], [Présentation finale]
+    ),
+    caption: [
+        Calendrier prévisionnel du projet de mémoire
+    ]
+)
 
 #bibliography("bibliography.bib", title: "Bibliographie", style: "ieee")
