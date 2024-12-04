@@ -63,7 +63,7 @@ L’outil devra permettre aux équipes de mieux comprendre et réduire les écar
 
 Un autre objectif clé sera la création d’une documentation complète et structurée. Cette documentation détaillera l’utilisation de l’outil ainsi que les méthodes de calcul employées, offrant une référence fiable pour les mises à jour et les évolutions futures.
 
-La réussite du projet dépendra en grande partie de l’adoption du nouvel outil par les équipes. Pour accompagner cette transition, un plan de conduite du changement sera mis en œuvre. Ce plan inclura des formations adaptées aux différents profils d’utilisateurs, une communication régulière sur les bénéfices de l’outil, ainsi qu’un accompagnement personnalisé pendant les premières phases d’utilisation @benzaida2008contribution. Ces actions viseront à lever les résistances potentielles et à encourager une adoption progressive et durable de la solution.
+La réussite du projet dépendra en grande partie de l’adoption du nouvel outil par les équipes. Pour accompagner cette transition, un plan de conduite du changement sera mis en œuvre. Ce plan inclura des formations adaptées aux différents profils d’utilisateurs, une communication régulière sur les bénéfices de l’outil, ainsi qu’un accompagnement personnalisé pendant les premières phases d’utilisation @benzaida2008contribution. Ces actions viseront à lever les résistances potentielles et à en encourager l'adoption progressive et durable de la solution.
 
 = Phases clés du projet et rôles associés
 
@@ -93,12 +93,13 @@ Pour valider ces choix techniques, un _PoC_ sera développé. Cela permettra de 
 
 Le calendrier prévisionnel de la partie du projet qui me concerne est le suivant :
 
-#show table.cell: set text(style: "normal", size: 11pt)
-#show table.cell.where(x: 0): set text(style: "normal", weight: "bold")
-#show table.cell.where(y: 0): set text(style: "normal", weight: "bold")
+#show table.cell: set text(style: "normal", size: 9pt)
+#show table.cell.where(x: 0): set text(style: "normal", weight: "bold",size:11pt)
+#show table.cell.where(y: 0): set text(style: "normal", weight: "bold",size:11pt)
 
 #figure(
     table(columns: 5,
+    align: horizon,
     [Mois], [Semaine 1], [Semaine 2], [Semaine 3], [Semaine 4],
     [1], [Préparation et organisation de l’analyse], [Recueil des besoins], [Analyse et synthèse des retours], [Rédaction des spécifications fonctionnelles],
     [2], [Analyse de l'existant], [Conception de l'architecture], [Développement du PoC (début)], [Revue et ajustement des choix techniques],
@@ -109,5 +110,7 @@ Le calendrier prévisionnel de la partie du projet qui me concerne est le suivan
         Calendrier prévisionnel du projet de mémoire
     ]
 )
+
+#pagebreak()
 
 #bibliography("bibliography.bib", title: "Bibliographie", style: "ieee")
