@@ -13,10 +13,12 @@
     paper: "a4",
     margin: (left: 20mm, right: 20mm, top: 20mm, bottom: 20mm),
     number-align: center,
+    numbering: "1"
   )
   set text(font: "New Computer Modern", lang: "fr")
   show math.equation: set text(weight: 400)
   set heading(numbering: "1.1.")
+  set par(justify: true)
 
   show outline.entry.where(
     level: 1
@@ -85,26 +87,15 @@
     top: 1em,
     bottom: 1.5em,
     align(center)[
-     // #heading(
-     //   outlined: false,
-     //   numbering: none,
-     //   text(0.85em, smallcaps[Résumé]),
-     // )
       #abstract
     ],
   )
 
-  outline(indent: auto, title:auto)
-
-
+  // outline(indent: auto, title:auto)
   // Main body.
-
-
-  set par(justify: true)
-  set page(numbering: "1")
-
 
   body
 
+  bibliography("bibliography.bib", title: "Bibliographie", style: "ieee")
   
 }

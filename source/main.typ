@@ -67,7 +67,7 @@ La réussite du projet dépendra en grande partie de l’adoption du nouvel outi
 
 = Phases clés du projet et rôles associés
 
-Dans le cadre de mon mémoire, qui s'étend sur quatre mois à temps plein, je me concentrerai sur deux phases principales : l'analyse des besoins métiers et la conception, suivie de la validation technique. La première phase consistera à comprendre les attentes des utilisateurs, tandis que la deuxième se focalisera sur la réalisation d'un _Proof of Concept_ (_PoC_) pour démontrer la faisabilité et valider l'approche technique @asanaProofOfConcept, avec le développement d'un prototype fonctionnel.
+Dans le cadre de mon mémoire qui porte sur 4 mois pleins de projet, je me concentrerai sur deux phases principales : l'analyse des besoins métiers et la conception, suivie de la validation technique. La première phase consistera à comprendre les attentes des utilisateurs, tandis que la deuxième se focalisera sur la réalisation d'un _PoC_ (_Proof of Concept_) pour démontrer la faisabilité et valider l'approche technique @asanaProofOfConcept, avec le développement d'un prototype fonctionnel.
 
 == Analyse des besoins
 
@@ -110,7 +110,3 @@ Le calendrier prévisionnel de la partie du projet qui me concerne est le suivan
         Calendrier prévisionnel du projet de mémoire
     ]
 )
-
-#pagebreak()
-
-#bibliography("bibliography.bib", title: "Bibliographie", style: "ieee")
